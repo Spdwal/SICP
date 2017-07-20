@@ -5,10 +5,10 @@
                  x)))
 
 (define (improve guess x)
-  (average-3  (/ x (square guess)) (* 2 guess)))
+  (average guess (/ x guess)))
 
-(define (average-3 x y)
-  (/ (+ x y) 3))
+(define (average x y)
+  (/ (+ x y) 2))
 
 (define (good-enough? guess x)
   (<
@@ -25,5 +25,5 @@
 (define (square x)
   (* x x))
 
-(define (sqrt-3 x)
+(define (sqrt x)
   (sqrt-iter 1.0 x))
