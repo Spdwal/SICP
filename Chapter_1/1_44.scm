@@ -1,0 +1,11 @@
+(load "1_43.scm")
+(define dx 0.0001)
+(define (smooth f)
+  (lambda (x)
+    (average-3 (f (- x dx) (f x) (f (+ x dx)))
+(define (average-3 x y z)
+  (/ (+ x y z) 3))
+
+(define (smooth-n-times f n)
+  (let ((n-times-smooth (repeat smooth n)))
+    (n-times-smooth f)))
