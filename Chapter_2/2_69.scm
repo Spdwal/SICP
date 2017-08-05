@@ -1,0 +1,11 @@
+(define (gerate-huffman-tree pairs)
+  (successive-merge (make-leaf-set pairs)))
+
+(define (successive-merge leaf-set)
+  (if (= (length leaf-set) 1)
+      (car leaf-set)
+      (let ((first (car leaf-set))
+            (second (cadr leaf-set))
+            (rest (cddr leaf-set)))
+        (successive-merge (adjoin-set (make-code-tree first second)
+                                      rest)))))
