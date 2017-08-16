@@ -1,0 +1,5 @@
+(define (make-accumulator init)
+  (define number init)
+  (lambda (x)
+    (begin (set! number (+ number x))
+           number)))

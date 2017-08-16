@@ -1,0 +1,36 @@
+(define (call-the-cops)
+  (display "call the cops\n"))
+
+(define (make-account balance pass-origin)
+  (define (withdraw amount)
+    (if (>= balance amount)
+        (begin (set! balance (- balance amount))
+               balance)
+        "Insufficient funds"))
+  (define (deposit amount)
+    (set! balance (+ balance amount))
+    balance)
+  (define (make-joint another-pass)
+    (dispath another-pass))
+  (define (dispatch password)
+    (lambda (pass m)
+      (if (eq? pass password)
+          (cond ((eq? m 'withdraw) withdraw)
+                ((eq? m 'deposit) deposit)
+                ((eq? m 'make-joint) make-joint)
+                (else (error "Unkown requeset -- make-account" m)))
+          (lambda (x)
+            "Incorrect password"))))
+  (dispatch pass-orgin))
+
+
+;;another solution
+
+(define (make-joint origin-acc old-password new-password)
+  (define (display-wrong-message msg)
+    (display "Incorrect password"))
+  (lambda (given-password mode)
+    (if (eq? given-password new-password)
+        ;;太厉害了，密码错误就交给原来的make account来解决，一个过程只要干好一个过程的事情就够了。
+        (origin-acc old-password mode)
+        display-wrong-meessage)))
