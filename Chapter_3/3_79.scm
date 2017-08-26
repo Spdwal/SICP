@@ -1,0 +1,5 @@
+(define (general-solce-2nd f  y0 dy0 dy)
+  (define (integral (delay dy) y0 dt))
+  (define (integral (delay ddy) y0 dt))
+  (define (ddy (stream-map f dy y)))
+  y)
